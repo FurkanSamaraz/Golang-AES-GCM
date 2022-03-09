@@ -15,3 +15,21 @@ ve anahtarları kayıt etmemiz gerekiyor bu sıkıcı ve güvensiz bunun yerine 
 * aesGCM ile çözümle
 şifre çözmede nonce(anahtar tekrarlama riski için kullanıldı) değişkenine dikkat edin doğru nonce olmaz ise şifre çözülemez.
 
+# ++ Ornek
+# Dosya Şifreleme
+projemiz ile bu fonksiyon ile dosya oluşturup şifreleyebiliriz.
+
+func encryptFile(filename string, data []byte, keyString string) {
+	f, _ := os.Create(filename)
+	defer f.Close()
+	f.Write(encrypt(data, passphrase))
+}
+
+# Dosya Şifre Çözme
+Projemiz ile Şifrelediğimiz dosyamızı bu fonksiyon ile çözebiliriz.
+
+func decryptFile(filename string, keyString string) []byte {
+	data, _ := ioutil.ReadFile(filename)
+	return decrypt(data, passphrase)
+}
+
